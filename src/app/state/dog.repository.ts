@@ -12,14 +12,8 @@ import {
 } from '@ngneat/elf-entities';
 import { switchMap } from 'rxjs/operators';
 import { DogsService } from './dog.service';
+import { Facts } from '../models/fact';
 
-interface Facts {
-  id : number;
-  facts: string[];
-  start_date: string;
-  status: boolean;
-  petId: number;
-}
 
 const store = createStore(
     { name: 'dogs' },
@@ -30,8 +24,6 @@ const store = createStore(
 export class DogsRepository {
     facts$ = store.pipe(selectAllEntities());
 
-
-
     setFacts(facts: Facts[]) {
         store.update(addEntities(facts));
     }
@@ -39,6 +31,12 @@ export class DogsRepository {
     addFact(fact: Facts) {
         store.update(addEntities(fact));
     }
+
+    update(id: number) {
+        store.update(updateEntities(id, { status: true }));
+    }
+
+
 
   
 }

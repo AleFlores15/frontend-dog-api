@@ -1,7 +1,8 @@
 export interface Facts {
     id: number;
-    facts: string[];
-    start_date: string;
+    name: string;
+    birthdate: Date;
+    breed: string;
     status: boolean;
-    petId: number;
+
 }

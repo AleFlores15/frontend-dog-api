@@ -17,5 +17,19 @@ export class DogsService {
           map((response: ApiResponse<Facts[]>) => response.response || []),
           tap((facts) => this.dogRepository.setFacts(facts))
     );
-}
+
+    }
+        // actualizar el status llamando el siguiente endpoint  PUT http://localhost:8080/api/v1/pet/{id}
+      
+    update(id: number): Observable<Facts[]> {
+        return this.http.put<ApiResponse<Facts[]>>('http://localhost:8080/api/v1/pet/'+id,{}).pipe(
+          map((response: ApiResponse<Facts[]>) => response.response || []),
+          tap((facts) => this.dogRepository.setFacts(facts))
+    );
+
+    }
+
+
+        
+
 }

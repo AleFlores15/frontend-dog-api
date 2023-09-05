@@ -1,20 +1,28 @@
 <table class="table table-striped">
     <thead>
-        <tr>
-
-            <th>facts</th>
-            <th>date</th>
-            <th>status</th>
-            <th>petId</th>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Birth</th>
+        <th>Breed</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let dog of dogsRepo.facts$ | async">
-            <td>{{dog.facts}}</td>
-            <td>{{dog.start_date}}</td>
-            <td>{{dog.status}}</td>
-            <td>{{dog.petId}}</td>
-    
-        </tr>
+      <tr *ngFor="let dog of dogsRepo.facts$ | async">
+        <td>{{ dog.id }}</td>
+        <td>{{ dog.name }}</td>
+        <td>{{ dog.birthdate }}</td>
+        <td>{{ dog.breed }}</td>
+        <td>{{ dog.status }}</td>
+        <td>
+            <button class="btn btn-danger" (click)="dogsRepo.update(dog.id)">
+              {{ dog.status ? 'Desactivar' : 'Activar' }}
+            </button>
+        </td>
+          
+      </tr>
     </tbody>
-</table>
+  </table>
+  
