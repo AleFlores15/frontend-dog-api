@@ -19,5 +19,9 @@ export class DogcomponentComponent {
     this.dogService.update(id).subscribe();
   }
 
+  crearnuevo(fact: any) {
+    this.dogService.crearnuevo(fact).subscribe();
+  }
+
 
 }

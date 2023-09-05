@@ -29,6 +29,14 @@ export class DogsService {
 
     }
 
+    crearnuevo(fact: Facts): Observable<Facts[]> {
+        return this.http.post<ApiResponse<Facts[]>>('http://localhost:8080/api/v1/pet',fact).pipe(
+          map((response: ApiResponse<Facts[]>) => response.response || []),
+          tap((facts) => this.dogRepository.addFact(fact))
+    );
+
+    }
+
 
         
 
