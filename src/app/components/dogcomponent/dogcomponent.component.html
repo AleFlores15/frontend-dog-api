@@ -1,0 +1,20 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+
+            <th>facts</th>
+            <th>date</th>
+            <th>status</th>
+            <th>petId</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dog of dogsRepo.facts$ | async">
+            <td>{{dog.facts}}</td>
+            <td>{{dog.start_date}}</td>
+            <td>{{dog.status}}</td>
+            <td>{{dog.petId}}</td>
+    
+        </tr>
+    </tbody>
+</table>
