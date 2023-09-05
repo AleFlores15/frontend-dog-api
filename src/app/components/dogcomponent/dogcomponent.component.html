@@ -1,3 +1,11 @@
+<br> <br><br><br><br><br>
+<div class="input-group mb-3 col-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+</div>
+<br> <br><br><br><br><br>
 <table class="table table-striped">
     <thead>
       <tr>
@@ -17,7 +25,7 @@
         <td>{{ dog.breed }}</td>
         <td>{{ dog.status }}</td>
         <td>
-            <button class="btn btn-danger" (click)="dogsRepo.update(dog.id)">
+            <button class="btn btn-danger" (click)="update(dog.id)">
               {{ dog.status ? 'Desactivar' : 'Activar' }}
             </button>
         </td>

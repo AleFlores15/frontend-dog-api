@@ -32,8 +32,15 @@ export class DogsRepository {
         store.update(addEntities(fact));
     }
 
+
+
     update(id: number) {
-        store.update(updateEntities(id, { status: true }));
+        store.update(
+          updateEntities(id, (entity) => ({
+            ...entity,
+            status: !entity.status,
+          }))
+        );
     }
 
 

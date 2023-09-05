@@ -14,4 +14,10 @@ export class DogcomponentComponent {
   ngOnInit(): void {
     this.dogService.getFacts().subscribe();
   }
+
+  update(id: number) {
+    this.dogService.update(id).subscribe();
+  }
+
+
 }
