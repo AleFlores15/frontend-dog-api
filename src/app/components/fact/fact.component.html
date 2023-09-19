@@ -1,0 +1,19 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>FACT</th>
+        <th>STARTDATE</th>
+        <th>STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fact of factRepo.facts$ | async">
+        <td>{{ fact.id }}</td>
+        <td>{{ fact.fact }}</td>
+        <td>{{ fact.start_date}}</td>
+        <td>{{ fact.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+  

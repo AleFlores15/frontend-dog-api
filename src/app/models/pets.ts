@@ -1,4 +1,4 @@
-export interface Facts {
+export interface Pets {
     id: number;
     name: string;
     birthdate: Date;

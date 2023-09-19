@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DogcomponentComponent } from './components/dogcomponent/dogcomponent.component';
 import { HttpClientModule } from '@angular/common/http';
 import { IncorrectoComponent } from './components/incorrecto/incorrecto.component';
+import { FactComponent } from './components/fact/fact.component';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -31,7 +32,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
   declarations: [
     AppComponent,
     DogcomponentComponent,
-    IncorrectoComponent
+    IncorrectoComponent,
+    FactComponent
   ],
   imports: [
     BrowserModule,

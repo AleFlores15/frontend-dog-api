@@ -21,7 +21,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let dog of dogsRepo.facts$ | async">
+      <tr *ngFor="let dog of dogsRepo.pets$ | async">
         <td>{{ dog.id }}</td>
         <td>{{ dog.name }}</td>
         <td>{{ dog.birthdate }}</td>

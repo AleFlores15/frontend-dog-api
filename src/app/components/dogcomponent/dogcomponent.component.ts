@@ -12,15 +12,15 @@ export class DogcomponentComponent {
   constructor(public dogsRepo: DogsRepository) {}
 
   ngOnInit(): void {
-    this.dogService.getFacts().subscribe();
+    this.dogService.getPets().subscribe();
   }
-
+  
   update(id: number) {
     this.dogService.update(id).subscribe();
   }
 
-  crearnuevo(fact: any) {
-    this.dogService.crearnuevo(fact).subscribe();
+  crearnuevo(pet: any) {
+    this.dogService.crearnuevo(pet).subscribe();
   }
 
 
