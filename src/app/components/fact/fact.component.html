@@ -1,19 +1,38 @@
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>FACT</th>
-        <th>STARTDATE</th>
-        <th>STATUS</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let fact of factRepo.facts$ | async">
-        <td>{{ fact.id }}</td>
-        <td>{{ fact.fact }}</td>
-        <td>{{ fact.start_date}}</td>
-        <td>{{ fact.status}}</td>
-      </tr>
-    </tbody>
-  </table>
+<section class="padding">
+    <h1 class="d-flex justify-content-center mb-4">Facts</h1>
+  
+    <section *ngIf="contacts$ | async as facts">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>FACT</th>
+            <th>STARTDATE</th>
+            <th>STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fact of facts">
+            <td>{{ fact.id }}</td>
+            <td>{{ fact.fact }}</td>
+            <td>{{ fact.start_date }}</td>
+            <td>{{ fact.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <ul
+        class="pagination d-flex justify-content-center"
+        *ngIf="paginationData$ | async as paginationData"
+      >
+        <li
+          *ngFor="let page of paginationData | paginationControls; index as i"
+          class="page-item page-link"
+          (click)="updateActivePage(i + 1)"
+        >
+          {{ i + 1 }}
+        </li>
+      </ul>
+    </section>
+  </section>
   
