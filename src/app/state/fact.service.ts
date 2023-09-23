@@ -1,6 +1,6 @@
 import { Injectable, TypeDecorator, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map, pipe, tap } from 'rxjs';
 import { Facts } from '../models/facts';
 import { FactRepository } from './fact.repository';
 import { ApiResponse } from '../models/response';
@@ -13,19 +13,10 @@ import { PaginationData } from '@ngneat/elf-pagination';
 export class FactService {
 
   constructor(private http: HttpClient, private factRepository: FactRepository) {}
+  
   httpClient: HttpClient = inject(HttpClient);
-  /*
-  getFacts(): Observable<Facts[]> {
-    return this.http.get<ApiResponse<Paginator<Facts>>>('http://localhost:8081/api/v1/pet/1/fact?page=0&size=4').pipe(
-      map((response: ApiResponse<Paginator<Facts>>) => {
-        return response.response ? response.response.content : [];
-      }),
-      tap((facts) => {
-        console.log(facts);
-        this.factRepository.setFact(facts);
-      })
-    );
-  }*/
+
+  //Para obtener los datos paginados
   getFacts(page: number = 0): Observable<PaginationData & { data: Facts[] }> {
     return this.http.get<ApiResponse<Paginator<Facts>>>(`http://localhost:8081/api/v1/pet/1/fact?page=${page}&size=3`, ).pipe(
       tap(response => console.log('Received JSON:', response)),
@@ -43,17 +34,27 @@ export class FactService {
         this.factRepository.addFacts(page + 1, paginationData);
       })
     );
-}
+  }
 
-saveFact(fact: string): Observable<void> {
-  const body = { fact }; 
-  return this.http.post<void>('http://localhost:8081/api/v1/pet/1/savefact', body);
-}
 
-postFact(): Observable<void> {
-  return this.http.post<void>('http://localhost:8081/api/v1/pet/1/fact', {});
-}
+  //El de abajo es el post del input (el manual)
+  saveFact(fact: string): Observable<void> {
+    const body = { fact }; 
+    return this.http.post<void>('http://localhost:8081/api/v1/pet/1/savefact', body);
+  }
 
+  //El de abajo es el post del boton (el automatico, que llama a la API externa desde el backend)
+  postFact(): Observable<void> {
+    return this.http.post<void>('http://localhost:8081/api/v1/pet/1/fact', {});
+  }
+
+  //para el put xd
+  updateFact(id: number, fact: string): Observable<void> {
+    const body = { fact }; // Ajusta esto según la estructura que tu backend espera
+    return this.http.put<void>(`http://localhost:8081/api/v1/fact/${id}`, body).pipe(
+      tap(() => this.factRepository.updateFact(id, fact))
+    );
+  } 
 
 
   

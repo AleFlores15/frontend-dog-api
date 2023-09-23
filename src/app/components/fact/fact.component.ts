@@ -4,7 +4,9 @@ import { FactService } from 'src/app/state/fact.service';
 import { switchMap, take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { KeycloakService } from 'keycloak-angular';
-
+import { MatDialog } from '@angular/material/dialog';
+import { EditFactDialogComponent } from '../edit-fact-dialog/edit-fact-dialog.component';
+import { Facts } from 'src/app/models/facts';
 @Component({
   selector: 'app-fact',
   templateUrl: './fact.component.html',
@@ -20,7 +22,8 @@ export class FactComponent implements OnInit {
   constructor(
     private factService: FactService,
     public factRepo: FactRepository,
-    private keycloakService: KeycloakService
+    private keycloakService: KeycloakService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -37,35 +40,52 @@ export class FactComponent implements OnInit {
     this.sub?.unsubscribe();
   }
 
-// OJOOOOOOOOOOOOOOOOOOOOOOOO
+// Aquí abajo se llama a facts y cada que se hace un post, se llama a refreshFacts y se refresca pa pagina
   addFact() {
     this.factService.postFact().subscribe(() => {
-        // Después de que el POST sea exitoso, actualizamos la lista de hechos
         this.refreshFacts();
     });
-}
-
-refreshFacts() {
-    // Obtener la página actual
-    this.factRepo.activePage$.pipe(
-        take(1) // Tomamos solo el valor actual
-    ).subscribe(currentPage => {
-        this.factService.getFacts(currentPage - 1).subscribe();
-    });
-}
-
-saveFact() {
-  if (this.newFact) {
-    this.factService.saveFact(this.newFact).subscribe(() => {
-      // Puedes decidir si deseas actualizar la lista de hechos aquí
-      this.refreshFacts();
-      this.newFact = ''; // Limpiar el campo de entrada
-    });
-  } else {
-    console.error('Fact is empty');
   }
-}
-logout() {
-  this.keycloakService.logout();
-}
+
+  //el refresh facts es oara actualizar la lista de facts
+  refreshFacts() {
+      // Obtener la página actual
+      this.factRepo.activePage$.pipe(
+          take(1) // Tomamos solo el valor actual
+      ).subscribe(currentPage => {
+          this.factService.getFacts(currentPage - 1).subscribe();
+      });
+  }
+
+  //savefacts es para el ingreso manual de datos
+  saveFact() {
+    if (this.newFact) {
+      this.factService.saveFact(this.newFact).subscribe(() => {
+        this.refreshFacts();
+        this.newFact = ''; 
+      });
+    } else {
+      console.error('Fact is empty');
+    }
+  }
+
+  //LOGOUT de keycloak
+  logout() {
+    this.keycloakService.logout();
+  }
+
+// para el modal 
+  openEditDialog(fact: Facts) {
+    const dialogRef = this.dialog.open(EditFactDialogComponent, {
+    data: { fact }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.factService.updateFact(fact.id, result).subscribe(() => {
+        this.refreshFacts();
+      });
+    }
+  });
+  }
 }

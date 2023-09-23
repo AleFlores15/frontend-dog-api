@@ -85,6 +85,15 @@ export class FactRepository {
         );
     }
 
+    updateFact(id: number, fact: string) {
+      store.update(
+        updateEntities(id, (entity) => ({
+          ...entity,
+          fact: fact,
+        }))
+      );
+    }
+
 
 
   

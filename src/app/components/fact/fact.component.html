@@ -37,6 +37,9 @@
                             <td>{{ fact.fact }}</td>
                             <td>{{ fact.start_date }}</td>
                             <td>{{ fact.status }}</td>
+                            <td>
+                                <button class="btn btn-warning" (click)="openEditDialog(fact)">Edit</button>
+                            </td>
                             
                         </tr>
                     </tbody>

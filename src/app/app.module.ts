@@ -10,6 +10,11 @@ import { IncorrectoComponent } from './components/incorrecto/incorrecto.componen
 import { FactComponent } from './components/fact/fact.component';
 import { PaginationControlsPipe } from './components/fact/pagination-controls.pipe';
 import { FormsModule } from '@angular/forms';
+import { EditFactDialogComponent } from './components/edit-fact-dialog/edit-fact-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -37,13 +42,18 @@ function initializeKeycloak(keycloak: KeycloakService) {
     IncorrectoComponent,
     FactComponent,
     PaginationControlsPipe,
+    EditFactDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     KeycloakAngularModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {
