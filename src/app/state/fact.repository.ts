@@ -8,6 +8,7 @@ import {
   selectEntityByPredicate,
   selectManyByPredicate,
   updateEntities,
+  upsertEntities,
   withEntities,
 } from '@ngneat/elf-entities';
 import { switchMap } from 'rxjs/operators';
@@ -44,7 +45,7 @@ export class FactRepository {
     setFact(facts: Facts[]) {
         store.update(addEntities(facts));
     }
-
+    /*
     addFacts(page: number, facts: PaginationData & { data: Facts[] }) {
         const { data, ...pagination } = facts;
     
@@ -56,11 +57,23 @@ export class FactRepository {
             data.map((c) => c.id)
           )
         );
-      }
+    }*/
+    addFacts(page: number, facts: PaginationData & { data: Facts[] }) {
+      const { data, ...pagination } = facts;
+  
+      store.update(
+        upsertEntities(data), // Usamos upsertEntities directamente aquí
+        updatePaginationData(pagination),
+        setPage(
+          page,
+          data.map((c) => c.id)
+        )
+      );
+  }
     
-      get store() {
-        return store;
-      }
+    get store() {
+      return store;
+    }
 
 
     update(id: number) {

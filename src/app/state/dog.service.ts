@@ -15,7 +15,8 @@ export class DogsService {
     getPets(): Observable<Pets[]> {
         return this.http.get<ApiResponse<Pets[]>>('http://localhost:8081/api/v1/pet').pipe(
           map((response: ApiResponse<Pets[]>) => response.response || []),
-          tap((pets) => this.dogRepository.setPets(pets))
+          tap((pets) => this.dogRepository.setPets(pets)),
+          
     );
 
     }

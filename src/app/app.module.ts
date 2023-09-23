@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IncorrectoComponent } from './components/incorrecto/incorrecto.component';
 import { FactComponent } from './components/fact/fact.component';
 import { PaginationControlsPipe } from './components/fact/pagination-controls.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -41,7 +42,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    FormsModule
   ],
   providers: [
     {
