@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DogcomponentComponent } from './components/dogcomponent/dogcomponent.component';
 import { HttpClientModule } from '@angular/common/http';
-import { IncorrectoComponent } from './components/incorrecto/incorrecto.component';
 import { FactComponent } from './components/fact/fact.component';
 import { PaginationControlsPipe } from './components/fact/pagination-controls.pipe';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +14,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FactFormComponent } from './components/fact-form/fact-form.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -39,10 +40,11 @@ function initializeKeycloak(keycloak: KeycloakService) {
   declarations: [
     AppComponent,
     DogcomponentComponent,
-    IncorrectoComponent,
     FactComponent,
     PaginationControlsPipe,
     EditFactDialogComponent,
+    FactFormComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule,

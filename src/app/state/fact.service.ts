@@ -18,13 +18,13 @@ export class FactService {
 
   //Para obtener los datos paginados
   getFacts(page: number = 0): Observable<PaginationData & { data: Facts[] }> {
-    return this.http.get<ApiResponse<Paginator<Facts>>>(`http://localhost:8081/api/v1/pet/1/fact?page=${page}&size=3`, ).pipe(
+    return this.http.get<ApiResponse<Paginator<Facts>>>(`http://localhost:8081/api/v1/pet/1/fact?page=${page}&size=6`, ).pipe(
       tap(response => console.log('Received JSON:', response)),
       map((response: ApiResponse<Paginator<Facts>>) => {
         const content = response.response?.content || [];
         return {
           currentPage: page + 1, // Asumiendo que la API devuelve páginas basadas en 0
-          perPage: 3,
+          perPage: 6,
           total: response.response?.totalElements || 0,
           lastPage: Math.ceil((response.response?.totalElements || 0) / 4),
           data: content

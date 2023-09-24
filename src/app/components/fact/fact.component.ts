@@ -7,6 +7,8 @@ import { KeycloakService } from 'keycloak-angular';
 import { MatDialog } from '@angular/material/dialog';
 import { EditFactDialogComponent } from '../edit-fact-dialog/edit-fact-dialog.component';
 import { Facts } from 'src/app/models/facts';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-fact',
   templateUrl: './fact.component.html',
@@ -23,7 +25,8 @@ export class FactComponent implements OnInit {
     private factService: FactService,
     public factRepo: FactRepository,
     private keycloakService: KeycloakService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -83,16 +86,23 @@ export class FactComponent implements OnInit {
 
 // para el modal 
   openEditDialog(fact: Facts) {
-    const dialogRef = this.dialog.open(EditFactDialogComponent, {
-    data: { fact }
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      this.factService.updateFact(fact.id, result).subscribe(() => {
-        this.refreshFacts();
+      const dialogRef = this.dialog.open(EditFactDialogComponent, {
+        data: { fact }
       });
-    }
-  });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.factService.updateFact(fact.id, result).subscribe(() => {
+          this.refreshFacts();
+        });
+      }
+    });
   }
+
+  //go to form
+  goToForm() {
+    this.router.navigate(['/form']);
+  }
+
+
 }
