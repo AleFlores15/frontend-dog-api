@@ -38,7 +38,10 @@
                             <td>{{ fact.start_date }}</td>
                             <td>{{ fact.status }}</td>
                             <td>
-                                <button class="btn btn-warning" (click)="openEditDialog(fact)">Edit</button>
+                                <button class="btn btn-primary" (click)="openEditDialog(fact)">Editar</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger" (click)="deletebyStatus(fact.id)">Borrar</button>
                             </td>
                             
                         </tr>

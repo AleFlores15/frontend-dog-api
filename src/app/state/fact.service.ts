@@ -54,7 +54,13 @@ export class FactService {
     return this.http.put<void>(`http://localhost:8081/api/v1/fact/${id}`, body).pipe(
       tap(() => this.factRepository.updateFact(id, fact))
     );
-  } 
+  }
+  
+  deletebyStatus(id: number): Observable<void> {
+   return this.http.put<void>(`http://localhost:8081/api/v1/delete/fact/${id}`, {}).pipe(
+      tap(() => this.factRepository.deletebyStatus(id))
+    );
+  }
 
 
   

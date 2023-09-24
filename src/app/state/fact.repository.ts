@@ -94,6 +94,15 @@ export class FactRepository {
       );
     }
 
+    deletebyStatus(id: number) {
+      store.update(
+        updateEntities(id, (entity) => ({
+          ...entity,
+          status: false,
+        }))
+      );
+    }
+
 
 
   

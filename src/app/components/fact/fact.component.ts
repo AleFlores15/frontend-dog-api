@@ -69,6 +69,13 @@ export class FactComponent implements OnInit {
     }
   }
 
+  //delete by status
+  deletebyStatus(id: number) {
+    this.factService.deletebyStatus(id).subscribe(() => {
+      this.refreshFacts();
+    });
+  }
+
   //LOGOUT de keycloak
   logout() {
     this.keycloakService.logout();
