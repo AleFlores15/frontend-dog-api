@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Dog Api Frontend</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- Botón de Logout movido al Navbar -->
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <button class="btn btn-danger" (click)="logout()">Log Out</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Botones fuera del nav -->
+  <div class="text-center mt-3">
+    <button class="btn btn-primary me-3">
+      <img src="https://vanacco.com/wp-content/uploads/2020/06/Form-1.jpg" alt="Ir al Formulario" class="img-fluid" style="max-height: 100px;" (click)="goToForm()">
+      <br>Ir al Formulario
+    </button>
+    <button class="btn btn-success">
+      <img src="https://cdn-icons-png.flaticon.com/512/1940/1940308.png" alt="Ver Lista" class="img-fluid" style="max-height: 100px;" (click)="goToList()">
+      <br>Ver Lista
+    </button>
+  </div>
+  

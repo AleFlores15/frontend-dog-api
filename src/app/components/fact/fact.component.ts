@@ -103,6 +103,9 @@ export class FactComponent implements OnInit {
   goToForm() {
     this.router.navigate(['/form']);
   }
+  goToMain(){
+    this.router.navigate(['/']);
+  }
 
 
 }

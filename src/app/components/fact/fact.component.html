@@ -8,7 +8,7 @@
         <ul class="navbar-nav me-auto">
             <!-- Botón de Formulario añadido en el Navbar -->
             <li class="nav-item">
-                <button class="btn btn-primary me-2" (click)="goToForm()">Formulario</button>
+                <button class="btn btn-primary me-2" (click)="goToMain()">Ir al Menú</button>
             </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -65,12 +65,6 @@
                             <td>{{ fact.fact }}</td>
                             <td>{{ fact.start_date }}</td>
                             <td>{{ fact.status }}</td>
-                            <td>
-                                <button class="btn btn-primary" (click)="openEditDialog(fact)">Editar</button>
-                            </td>
-                            <td>
-                                <button class="btn btn-danger" (click)="deletebyStatus(fact.id)">Borrar</button>
-                            </td>
                             
                         </tr>
                     </tbody>

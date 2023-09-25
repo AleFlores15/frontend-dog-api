@@ -6,6 +6,7 @@ import { FactComponent } from './components/fact/fact.component';
 import { FactFormComponent } from './components/fact-form/fact-form.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { FormGuard } from './guards/form.guard';
+import { MenuComponent } from './components/menu/menu.component';
 
 /*
 const routes: Routes = [
@@ -14,10 +15,13 @@ const routes: Routes = [
   { path: 'facts', component: FactComponent }
 ];*/
 const routes: Routes = [
-  { path: '', component: FactComponent, canActivate: [AuthGuard], data: { roles: ['user','ADMIN' ] } },
+  { path: '', component: MenuComponent },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: 'pets', component: DogcomponentComponent },
   { path: 'form', component: FactFormComponent, canActivate: [FormGuard], data: { roles: ['ADMINFront'] }},
+  { path: 'list', component: FactComponent, canActivate: [AuthGuard], data: { roles: ['user','ADMIN' ] } },
+
+  
 ];
 
 @NgModule({

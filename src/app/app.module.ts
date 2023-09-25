@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FactFormComponent } from './components/fact-form/fact-form.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 function initializeKeycloak(keycloak: KeycloakService) {
@@ -45,6 +46,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     EditFactDialogComponent,
     FactFormComponent,
     ForbiddenComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
